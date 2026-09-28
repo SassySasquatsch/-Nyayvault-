@@ -1,0 +1,165 @@
+/* =========================================================
+   NyayVault — Design tokens
+   Navy / white / gold official register, justice-scale mark.
+   ========================================================= */
+
+:root{
+  --navy-deep:   #0a1f3d;
+  --navy-mid:    #12325c;
+  --navy-line:   #24466f;
+  --gold:        #c9a227;
+  --gold-soft:   #e4c65a;
+  --paper:       #f6f5f1;
+  --paper-panel: #ffffff;
+  --ink:         #101820;
+  --ink-soft:    #4b5665;
+  --ink-faint:   #7c8798;
+  --hair:        #dfe2e8;
+
+  --ok:          #1f8a4c;
+  --danger:      #b3261e;
+
+  --font-head-en: "Fraunces", "Noto Serif Devanagari", serif;
+  --font-head-hi: "Noto Serif Devanagari", "Fraunces", serif;
+  --font-body-en: "Inter", "Noto Sans Devanagari", sans-serif;
+  --font-body-hi: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+
+  --radius: 3px;
+  --shadow-panel: 0 18px 50px -20px rgba(10,31,61,0.35);
+
+  --bg: var(--paper);
+  --surface: var(--paper-panel);
+  --text: var(--ink);
+  --text-soft: var(--ink-soft);
+  --text-faint: var(--ink-faint);
+  --border: var(--hair);
+  --brand: var(--navy-deep);
+  --brand-mid: var(--navy-mid);
+}
+
+html[data-theme="dark"]{
+  --bg: #0a0e14;
+  --surface: #121821;
+  --text: #eef1f5;
+  --text-soft: #aeb8c4;
+  --text-faint: #7a8493;
+  --border: #232c38;
+  --brand: #06121f;
+  --brand-mid: #0e2138;
+  --paper-panel: #121821;
+  --shadow-panel: 0 18px 60px -20px rgba(0,0,0,0.6);
+}
+
+html[lang="hi"] body{ font-family: var(--font-body-hi); }
+html[lang="hi"] .font-head{ font-family: var(--font-head-hi); }
+html[lang="en"] body{ font-family: var(--font-body-en); }
+html[lang="en"] .font-head{ font-family: var(--font-head-en); }
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
+}
+img,svg{ display:block; }
+button{ font-family: inherit; }
+a{ color: inherit; }
+
+.font-head{ letter-spacing: 0.01em; }
+
+/* ---------- utility bits shared across pages ---------- */
+
+.hairline{
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  opacity:.65;
+}
+
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  padding:4px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  color: var(--text-soft);
+}
+
+.toggle-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon-btn{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text-soft);
+  cursor:pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.icon-btn:hover{ border-color: var(--gold); color: var(--gold); }
+.icon-btn svg{ width:18px; height:18px; }
+
+.lang-switch{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:999px;
+  overflow:hidden;
+  font-size:12px;
+}
+.lang-switch button{
+  border:none;
+  background:transparent;
+  color:var(--text-soft);
+  padding:7px 13px;
+  cursor:pointer;
+  letter-spacing:.02em;
+}
+.lang-switch button.active{
+  background: var(--brand);
+  color: #fff;
+}
+html[data-theme="dark"] .lang-switch button.active{ background: var(--gold); color: #101820; }
+
+.btn-primary{
+  background: var(--brand);
+  color:#fff;
+  border:1px solid var(--brand);
+  border-radius: var(--radius);
+  padding:13px 22px;
+  font-size:14.5px;
+  font-weight:600;
+  letter-spacing:.01em;
+  cursor:pointer;
+  transition: background .15s ease, transform .1s ease;
+}
+.btn-primary:hover{ background: var(--navy-mid); }
+.btn-primary:active{ transform: translateY(1px); }
+.btn-primary:focus-visible, .icon-btn:focus-visible, .lang-switch button:focus-visible, .btn-ghost:focus-visible{
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.btn-ghost{
+  background: transparent;
+  color: var(--text-soft);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding:10px 16px;
+  font-size:13.5px;
+  cursor:pointer;
+}
+.btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

@@ -1,0 +1,97 @@
+/* =========================================================
+   NyayVault — Case Lifecycle (read-only timeline)
+   Uses the existing theme variables so light/dark just work.
+   ========================================================= */
+
+.lc-panel{ margin-top:26px; padding-top:20px; border-top:1px solid var(--border); }
+.lc-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:12px; }
+.lc-head h4{ margin:0 0 4px; font-size:15.5px; }
+.lc-head p{ margin:0; font-size:12.5px; color: var(--text-soft); line-height:1.5; max-width:520px; }
+.lc-readonly{
+  display:inline-flex; align-items:center; gap:5px; flex:none;
+  font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color: var(--text-soft); border:1px solid var(--border); border-radius:999px; padding:4px 10px;
+  cursor:help;
+}
+
+.lc-toolbar{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+.lc-toolbar select{
+  font:inherit; font-size:12.5px; color: var(--text); background: var(--surface);
+  border:1px solid var(--border); border-radius: var(--radius); padding:6px 8px; max-width:100%;
+}
+.lc-meta{ font-size:12px; color: var(--text-faint); }
+
+/* flow strip: Upload → Access → Verification → Version 2 → ... */
+.lc-flow{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:16px; }
+.lc-flow:empty{ display:none; }
+.lc-step{
+  --lc-c: var(--text-soft);
+  font-size:11px; font-weight:600; color: var(--lc-c);
+  border:1px solid var(--lc-c); border-radius:999px; padding:2px 10px;
+}
+.lc-arrow{ color: var(--text-faint); font-size:12px; }
+
+/* stage colours */
+.stage-case{ --lc-c: var(--text-soft); }
+.stage-upload{ --lc-c:#2f7bd6; }
+.stage-version{ --lc-c:#8a5cf0; }
+.stage-access{ --lc-c: var(--text-soft); }
+.stage-sharing{ --lc-c: var(--gold); }
+.stage-verification{ --lc-c: var(--ok); }
+.stage-processing{ --lc-c:#d17a1f; }
+.stage-anchoring{ --lc-c:#1b8a8f; }
+.stage-court{ --lc-c:#c2416a; }
+.stage-report{ --lc-c:#5b7896; }
+.stage-other{ --lc-c: var(--text-faint); }
+.is-bad{ --lc-c: var(--danger); }
+
+.lc-body{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px; align-items:start; }
+
+.lc-timeline{
+  list-style:none; margin:0; padding:2px 4px 2px 22px;
+  max-height:460px; overflow-y:auto;
+}
+.lc-item{
+  position:relative; padding:8px 10px 10px 12px; margin:0 0 6px;
+  border:1px solid transparent; border-radius: var(--radius); cursor:pointer;
+}
+.lc-item::after{               /* connector line: lives on the item so it scrolls with the content */
+  content:""; position:absolute; left:-16px; top:0; bottom:-7px; width:1px; background: var(--border);
+}
+.lc-item:last-child::after{ display:none; }
+.lc-item .action-badge{ color: var(--lc-c, var(--text-soft)); border-color: var(--lc-c, var(--border)); }
+.lc-item:hover{ background: var(--bg); }
+.lc-item:focus-visible{ outline:2px solid var(--gold); outline-offset:1px; }
+.lc-item.selected{ background: var(--bg); border-color: var(--lc-c, var(--gold)); }
+.lc-dot{
+  position:absolute; left:-20px; top:13px; width:10px; height:10px; border-radius:50%; box-sizing:border-box;
+  background: var(--surface); border:2px solid var(--lc-c, var(--gold)); z-index:1;
+}
+.lc-item.selected .lc-dot{ background: var(--lc-c, var(--gold)); }
+.lc-item .ti-top{ display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap; }
+.lc-item .ti-time{ font-family: var(--font-mono); font-size:11px; color: var(--text-faint); }
+.lc-who{ font-size:12.5px; color: var(--text); }
+.lc-doc{ font-size:12px; color: var(--text-soft); margin-top:2px; }
+.lc-doc code, .lc-mono{ font-family: var(--font-mono); font-size:11px; color: var(--text-faint); }
+
+.lc-chip{
+  font-size:10px; font-weight:600; padding:2px 7px; border-radius:999px;
+  border:1px solid var(--border); color: var(--text-soft); background: var(--surface);
+}
+.lc-chip.ok{ color: var(--ok); border-color: var(--ok); }
+.lc-chip.bad{ color: var(--danger); border-color: var(--danger); }
+
+.lc-detail{
+  border:1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+  padding:14px 16px; min-height:120px;
+}
+.lc-detail-title{ font-weight:600; font-size:14px; margin-bottom:10px; }
+.lc-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+.lc-table th{
+  text-align:left; vertical-align:top; width:34%; padding:7px 10px 7px 0;
+  font-weight:500; color: var(--text-faint); border-bottom:1px solid var(--border);
+}
+.lc-table td{ padding:7px 0; border-bottom:1px solid var(--border); word-break:break-word; overflow-wrap:anywhere; }
+.lc-note{ font-size:11px; color: var(--text-faint); margin-top:3px; line-height:1.45; }
+.lc-muted{ color: var(--text-faint); font-size:12.5px; list-style:none; }
+.lc-error{ color: var(--danger); font-size:13px; list-style:none; }

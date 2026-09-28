@@ -1,0 +1,295 @@
+/* =========================================================
+   NyayVault — Login page (hero/backdrop layout)
+   Uses the shared design tokens from styles.css so the whole
+   page (card, text, fields) follows the site's light/dark
+   theme toggle automatically via html[data-theme].
+   ========================================================= */
+
+.login-hero{
+  position:relative;
+  min-height:100vh;
+}
+
+/* ---------------- full-bleed background photo ----------------
+   position:fixed so it always covers the viewport, independent of
+   the height the (in-flow) content around it ends up computing to. */
+.login-hero__backdrop{
+  position:fixed;
+  top:0; right:0; bottom:0; left:0;
+  z-index:0;
+  background-image:url("../assets/justice-india-background.png");
+  background-size:cover;
+  background-position:center 30%;
+  background-repeat:no-repeat;
+}
+.login-hero__backdrop::after{
+  content:"";
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  background:
+    linear-gradient(90deg, rgba(6,14,28,.93) 0%, rgba(6,14,28,.78) 26%, rgba(6,14,28,.32) 48%, rgba(6,14,28,.06) 60%, rgba(6,14,28,0) 68%),
+    linear-gradient(180deg, rgba(6,14,28,.18) 0%, rgba(6,14,28,.02) 30%, rgba(6,14,28,.08) 70%, rgba(6,14,28,.55) 100%);
+}
+/* a touch darker in dark mode so the photo doesn't wash out against a dark UI */
+html[data-theme="dark"] .login-hero__backdrop::after{
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.82) 26%, rgba(0,0,0,.40) 48%, rgba(0,0,0,.08) 60%, rgba(0,0,0,0) 68%),
+    linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.15) 70%, rgba(0,0,0,.65) 100%);
+}
+
+.login-hero__topbar{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:10px;
+  padding:26px clamp(20px,4vw,56px) 0;
+}
+.login-hero__topbar .icon-btn{ border-color: rgba(255,255,255,.3); color:#f3f5f8; }
+.login-hero__topbar .icon-btn:hover{ border-color: var(--gold-soft); color: var(--gold-soft); }
+.login-hero__topbar .lang-switch{ border-color: rgba(255,255,255,.3); }
+.login-hero__topbar .lang-switch button{ color:#f3f5f8; }
+.login-hero__topbar .lang-switch button.active{ background:#fff; color:var(--brand); }
+
+.login-hero__content{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: minmax(300px,560px) minmax(360px,460px);
+  gap:clamp(24px,5vw,64px);
+  align-items:center;
+  padding:24px clamp(20px,4vw,56px) 48px;
+}
+
+/* ---------------- LEFT: brand / hero copy (always over the photo) ---------------- */
+.login-hero__brand{
+  color:#f6f4ec;
+  padding-top:6px;
+}
+.login-hero__brand .brand-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:28px;
+}
+.login-hero__brand .brand-mark{ width:44px; height:44px; flex:none; color: var(--gold-soft); }
+.login-hero__brand .brand-name{
+  font-size:21px;
+  font-weight:600;
+  color:#fff;
+  line-height:1.15;
+}
+.login-hero__brand .brand-name small{
+  display:block;
+  font-family: var(--font-body-en);
+  font-weight:400;
+  font-size:11px;
+  letter-spacing:.08em;
+  color: rgba(255,255,255,.6);
+  margin-top:3px;
+}
+
+.hero-heading{
+  font-size: clamp(28px,3.2vw,38px);
+  line-height:1.2;
+  font-weight:600;
+  color:#fff;
+  margin:0 0 16px;
+  max-width:9.5em;
+}
+.hero-lede{
+  font-size:15.5px;
+  line-height:1.65;
+  color: rgba(255,255,255,.78);
+  max-width:32em;
+  margin:0 0 32px;
+}
+
+.feature-list{
+  list-style:none;
+  margin:0 0 32px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.feature-list li{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:14.5px;
+  color:#eef1f6;
+}
+.feature-list .icon-ring{
+  flex:none;
+  width:38px; height:38px;
+  border-radius:50%;
+  border:1.5px solid var(--gold-soft);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--gold-soft);
+}
+
+.hero-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:24px;
+  font-size:12px;
+  color: rgba(255,255,255,.55);
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:16px;
+  max-width:34em;
+}
+
+/* ---------------- RIGHT: login card ---------------- */
+.login-hero__card{
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 30px 60px -18px rgba(5,12,26,.45), var(--shadow-panel);
+  padding: clamp(28px,3vw,40px) clamp(26px,3vw,40px) 32px;
+}
+
+.form-wrap{
+  width:100%;
+}
+.form-wrap .eyebrow{
+  font-size:12.5px;
+  color: var(--text-faint);
+  margin-bottom:8px;
+}
+.form-wrap h2{
+  font-size:24px;
+  font-weight:600;
+  margin:0 0 8px;
+  color: var(--text);
+}
+.form-wrap .lede{
+  font-size:14px;
+  color: var(--text-soft);
+  margin: 0 0 26px;
+  line-height:1.55;
+}
+
+.field{ margin-bottom:18px; }
+.field label{
+  display:block;
+  font-size:12.5px;
+  font-weight:600;
+  color: var(--text-soft);
+  margin-bottom:7px;
+  letter-spacing:.01em;
+}
+.field .input-shell{
+  position:relative;
+  display:flex;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition: border-color .15s ease;
+}
+.field .input-shell:focus-within{ border-color: var(--brand); }
+html[data-theme="dark"] .field .input-shell:focus-within{ border-color: var(--gold); }
+
+.field .input-shell svg{
+  width:16px; height:16px;
+  margin-left:13px;
+  color: var(--text-faint);
+  flex:none;
+}
+.field input, .field select{
+  flex:1;
+  width:100%;
+  border:none;
+  background:transparent;
+  color: var(--text);
+  padding:12px 13px;
+  font-size:14.5px;
+  outline:none;
+  font-family: inherit;
+}
+.field select{ appearance:none; cursor:pointer; }
+.field .select-caret{ margin:0 12px 0 0; color:var(--text-faint); width:14px; height:14px; }
+
+.field .toggle-visibility{
+  background:none; border:none; cursor:pointer;
+  color: var(--text-faint);
+  padding:0 13px;
+  display:flex; align-items:center;
+}
+.field .toggle-visibility:hover{ color: var(--text-soft); }
+
+.role-hint{
+  font-size:12px;
+  color: var(--text-faint);
+  margin-top:7px;
+  line-height:1.5;
+}
+
+.form-meta-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin: 4px 0 24px;
+  font-size:13px;
+}
+.form-meta-row label{
+  display:flex; align-items:center; gap:8px;
+  color: var(--text-soft);
+  cursor:pointer;
+}
+.form-meta-row a{
+  color: var(--brand);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+html[data-theme="dark"] .form-meta-row a{ color: var(--gold-soft); }
+.form-meta-row a:hover{ border-color: currentColor; }
+
+.submit-row{ margin-top:6px; }
+.submit-row .btn-primary{ width:100%; display:flex; align-items:center; justify-content:center; gap:8px; }
+
+.form-error{
+  display:none;
+  align-items:center;
+  gap:8px;
+  background: rgba(179,38,30,0.08);
+  border:1px solid rgba(179,38,30,0.35);
+  color: var(--danger);
+  font-size:13px;
+  padding:10px 12px;
+  border-radius: var(--radius);
+  margin-bottom:18px;
+}
+.form-error.visible{ display:flex; }
+.form-error svg{ width:15px; height:15px; flex:none; }
+
+.form-footer-note{
+  margin-top: 30px;
+  font-size:11.5px;
+  color: var(--text-faint);
+  line-height:1.6;
+  border-top:1px solid var(--border);
+  padding-top:16px;
+}
+
+.demo-hint{
+  margin-top:16px;
+  font-size:12px;
+  color: var(--text-faint);
+  background: var(--bg);
+  border:1px dashed var(--border);
+  border-radius: var(--radius);
+  padding:10px 12px;
+  line-height:1.6;
+}
+.demo-hint b{ color: var(--text-soft); }
+
+@media (max-width: 880px){
+  .login-hero__content{ grid-template-columns: 1fr; padding-top:12px; }
+  .login-hero__brand{ display:none; }
+  .login-hero__card{ max-width:440px; margin:0 auto; }
+}

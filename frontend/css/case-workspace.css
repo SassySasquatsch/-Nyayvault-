@@ -1,0 +1,69 @@
+/* =========================================================
+   NyayVault — case workspace (IO / Forensic / Judge)
+   Theme variables only, so light/dark just work.
+   ========================================================= */
+
+/* case header: contextual actions sit next to the status badge */
+.cw-head-right{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+.cw-action{ padding:9px 16px; font-size:13px; white-space:nowrap; }
+
+.cw-list-h{ margin:26px 0 12px; font-size:17px; }
+
+/* "Forensic Report" marker on a document row / in Document Details */
+.doc-type-badge.cw-report-badge,
+.doc-card .doc-type-badge.cw-report-badge{
+  color: var(--gold); border-color: var(--gold); background: transparent;
+}
+
+/* forensic report tab */
+.cw-report-empty{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+.cw-report-empty p{ margin:0; font-size:13px; color: var(--text-soft); }
+.cw-receipt{ margin:0 0 16px; border-color: var(--ok); }
+.cw-receipt .hash-val{ margin-bottom:8px; }
+.cw-receipt-meta{ margin:0; }
+
+/* verify tab */
+.cw-verify-note{ margin-bottom:14px; }
+.cw-verify-btn{ margin-top:6px; }
+#cwVerifyResult{ margin-top:16px; }
+.cw-verify-verdict{ font-size:14px; margin:4px 0 12px; display:flex; align-items:center; gap:6px; font-weight:700; }
+.cw-verify-hash{ margin:10px 0 4px; }
+.cw-mono{ font-family: var(--font-mono); font-size:12px; word-break: break-all; overflow-wrap:anywhere; }
+.cw-explorer-link{ font-family: var(--font-mono); font-size:12px; word-break: break-all; overflow-wrap:anywhere; color: var(--accent, #2563eb); text-decoration: underline; text-underline-offset: 2px; }
+.cw-explorer-link:hover{ text-decoration: none; }
+
+/* forensic overview: clickable rows */
+.cw-jump{ cursor:pointer; }
+.cw-jump:focus-visible{ outline:2px solid var(--gold); outline-offset:-2px; }
+.cw-jump .case-meta{ flex-wrap:wrap; }
+
+/* Document Details modal */
+.modal.modal-wide{ max-width:680px; max-height:90vh; }
+.cw-dd-title{ margin:0 0 10px; font-size:18px; overflow-wrap:anywhere; padding-right:28px; }
+.cw-dd-badges{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.cw-dd-badges .doc-type-badge{
+  font-size:10px; font-weight:700; letter-spacing:.03em; padding:3px 7px; border-radius:4px;
+  background: var(--bg); color: var(--text-soft); border:1px solid var(--border);
+}
+.cw-dd-table td{ padding:6px 0; }
+.cw-dd-table td:first-child{ width:150px; vertical-align:top; }
+.cw-dd-table td:last-child{ font-family: inherit; font-size:13px; overflow-wrap:anywhere; }
+.cw-dd-table .cw-mono{ font-family: var(--font-mono); font-size:12px; }
+.cw-dd-sub{ margin:20px 0 4px; font-size:13.5px; }
+.cw-dd-actions{ display:flex; justify-content:flex-end; margin-top:18px; }
+
+/* search results that open their case */
+.search-result-item.is-link{ cursor:pointer; }
+.search-result-item.is-link:hover{ border-color: var(--gold); }
+.search-result-item.is-link:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+/* audit badge for the new action */
+.action-badge.forensic_report_upload{ color: var(--gold); border-color: var(--gold); }
+
+/* Add Case: FIR format hint */
+.iod-hint{ margin:2px 0 0; font-size:11.5px; color: var(--text-faint); line-height:1.45; }
+
+@media (max-width: 640px){
+  .cw-head-right{ justify-content:flex-start; }
+  .cw-dd-table td:first-child{ width:110px; }
+}

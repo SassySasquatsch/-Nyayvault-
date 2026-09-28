@@ -1,0 +1,37 @@
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+sqlalchemy==2.0.36
+pydantic==2.12.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.20
+python-dotenv==1.0.1
+Pillow==12.0.0
+pypdf==5.1.0
+reportlab==4.2.5
+SpeechRecognition==3.10.4
+
+# Blockchain anchoring layer (app/utils/blockchain_anchor.py). Only
+# actually used when BLOCKCHAIN_ANCHORING_ENABLED=true -- the app runs
+# fine without a chain node either way, this is just the client library.
+web3==7.14.0
+
+# --- Optional, heavier dependencies for real (non-simulated) redaction and
+# transcription. The API works fine without them -- those two endpoints just
+# report that they're returning a simulated result instead of a real one.
+# opencv-python==4.10.0.84
+
+# --- OCR (app/utils/ocr_utils.py) -- text extraction from scanned PDFs and
+# image evidence (.png/.jpg/...) so it becomes searchable via /api/search.
+# The app works fine without these too: uploads still succeed, they just
+# won't get a text-searchable ocr_text/ocr_method until these (and the two
+# system packages noted below) are installed.
+pytesseract==0.3.13
+pdf2image==1.17.0
+# Both are thin wrappers around system binaries that pip can't install:
+#   Tesseract OCR    -- Debian/Ubuntu: apt-get install tesseract-ocr
+#   poppler (pdf2image) -- Debian/Ubuntu: apt-get install poppler-utils
+# Without poppler, scanned PDFs (not plain images) fall back to OCRing
+# whatever raster page-images pypdf finds embedded in the PDF directly --
+# see _ocr_pdf_via_embedded_images() in app/utils/ocr_utils.py.
+

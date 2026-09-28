@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+nyayvault.db
+storage/evidence/*
+storage/reports/*
+storage/forensic_reports/*
+!storage/evidence/.gitkeep
+!storage/reports/.gitkeep
+!storage/forensic_reports/.gitkeep
+scripts/demo_fixtures/

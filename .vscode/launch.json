@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "NyayVault: FastAPI (uvicorn --reload)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--reload",
+                "--port",
+                "8000"
+            ],
+            "jinja": true,
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "NyayVault: seed_data.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/seed_data.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "NyayVault: populate_demo_data.py (server must already be running)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/populate_demo_data.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

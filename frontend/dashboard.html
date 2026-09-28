@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NyayVault — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/lifecycle.css">
+<link rel="stylesheet" href="css/io-dashboard.css">
+<link rel="stylesheet" href="css/case-workspace.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ Top bar ============ -->
+  <header class="topbar">
+    <div class="brand-mini">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 4V44" stroke="currentColor" stroke-width="2"/>
+        <path d="M10 44H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M24 9L10 13" stroke="currentColor" stroke-width="2"/>
+        <path d="M24 9L38 13" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 13L10 13L7 24C7 24 4 26 4 20C4 16 4 13 4 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M34 13L40 13L44 20C44 26 41 24 41 24L38 13" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="24" cy="6" r="2.4" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <div>
+        <span data-i18n="brand_name">NyayVault</span>
+        <small data-i18n="brand_tagline">DIGITAL EVIDENCE MANAGEMENT SYSTEM</small>
+      </div>
+    </div>
+
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="globalSearch" data-i18n-ph="search_ph" placeholder="Search cases, evidence, hashes…">
+    </div>
+
+    <div class="topbar-right">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="hi">हिं</button>
+      </div>
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+      </button>
+      <div class="user-chip">
+        <div class="avatar" id="userAvatar">U</div>
+        <div class="meta">
+          <div class="name" id="userName">—</div>
+          <div class="role" id="userRoleLabel">—</div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" aria-label="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <!-- ============ Sidebar ============ -->
+    <nav class="sidebar" id="sidebar">
+      <div class="role-card">
+        <svg id="roleCardIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        <div>
+          <div class="role-eyebrow" data-i18n="sidebar_primary_work">PRIMARY WORK</div>
+          <div class="role-title" id="roleCardTitle">—</div>
+          <div class="role-desc" id="roleCardDesc">—</div>
+        </div>
+      </div>
+
+      <div class="nav-group-label">MENU</div>
+      <ul class="nav-list" id="navList"></ul>
+    </nav>
+
+    <!-- ============ Main ============ -->
+    <main class="main" id="mainContent"></main>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<script src="js/theme.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/api.js"></script>
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/lifecycle.js"></script>
+<script src="js/io-dashboard.js"></script>
+<script src="js/case-workspace.js"></script>
+</body>
+</html>
